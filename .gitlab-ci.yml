@@ -1,0 +1,58 @@
+services:
+
+# this yaml uses an ubuntu 16.04 imges with maven/java/tomcat preinstalled 
+# (check dependencies install part of the Dockerfile)
+image: ubuntu_dexms:1.1
+
+stages:
+  - install
+  - build
+  - test
+  - deploy
+  - start
+
+job_install_ci:
+  stage: install
+  tags:
+    - test
+  script:
+    - pwd
+    - ls
+
+job_build_ci:
+  stage: build
+  tags:
+    - test
+  script:
+    - source /etc/environment && mvn clean verify
+    - source /etc/environment && mvn install
+  artifacts:
+    paths:
+    - dexms-service/target/
+
+job_docker_ci:
+  stage: test
+  tags:
+    - test
+  script:
+    - source /etc/environment && docker build .
+
+job_test_ci:
+  stage: test
+  tags:
+    - test
+  script:
+    - source /etc/environment && mvn test
+    - /usr/local/apache-tomcat-8.5.42/bin/startup.sh
+    - sleep 10
+    - cp target/DeXMS-Service-1.0.0-SNAPSHOT.war /usr/local/apache-tomcat-8.5.42/webapps/
+    - sleep 10
+    - ls /usr/local/apache-tomcat-8.5.42/webapps
+    - ls /usr/local/apache-tomcat-8.5.42/webapps/dexms-service-1.0.0-SNAPSHOT/
+    - wget http://localhost:8080/DeXMS-Service-1.0.0-SNAPSHOT/
+  artifacts:
+    paths:
+    - dexms-service/target/
+    
+    
+
