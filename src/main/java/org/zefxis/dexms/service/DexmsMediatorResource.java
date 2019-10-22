@@ -44,7 +44,7 @@ public class DexmsMediatorResource extends ServerResource {
 
 			jsonObject = (JSONObject) parser.parse(receivedText);
 			protocol = (String) jsonObject.get("protocol");
-			interfaceService = (String) jsonObject.get("interface");
+			interfaceService = (String) jsonObject.get("gidl");
 			service_name = (String) jsonObject.get("service_name");
 
 		} catch (ParseException e) {
@@ -99,7 +99,7 @@ public class DexmsMediatorResource extends ServerResource {
 		}
 		MediatorGenerator mediator = new MediatorGenerator();
 		MediatorOutput mediatorOutput = mediator.generateWar(byteArray, busProtocol, service_name);
-		return new ObjectRepresentation<MediatorOutput>(mediatorOutput);
+		return new ObjectRepresentation<byte[]>(mediatorOutput.jar);
 	}
 
 	private byte[] stringToByteArray(String string) {

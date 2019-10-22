@@ -6,7 +6,7 @@ import org.restlet.routing.Router;
 
 public class DexmsService extends Application {
 
-	public DexmsService() {
+	public DexmsService(){
 	}
 
 	@Override

@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.zefxis.dexms</groupId>
 	<version>1.0.0-SNAPSHOT</version>
-	<artifactId>DeXMS-Service</artifactId>
+	<artifactId>dexms-service</artifactId>
 	<packaging>war</packaging>
 	<name>DeXMS Service Webapp</name>
 	<url>http://maven.apache.org</url>
@@ -57,6 +57,30 @@
 					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
 				</configuration>
 			</plugin>
+			<!-- <plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>copy</id>
+						<phase>package</phase>
+						<configuration>
+							<target>
+								<echo>ANT TASK - copying files....</echo>
+								<copy todir="${project.basedir}/../DeXMS/dexms-service" overwrite="true"
+									flatten="true">
+									<fileset dir="${basedir}" includes="*.war">
+										<include name="target/*.war" />
+									</fileset>
+								</copy>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>-->
 		</plugins>
 	</build>
 	<dependencies>
