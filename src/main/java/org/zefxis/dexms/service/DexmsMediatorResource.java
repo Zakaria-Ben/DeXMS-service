@@ -94,8 +94,8 @@ public class DexmsMediatorResource extends ServerResource {
 
 		if (busProtocol == null) {
 
-			MediatorOutput mediatorOutput = new MediatorOutput();
-			return new ObjectRepresentation<MediatorOutput>(mediatorOutput);
+			byte[] mediatorOutput = null;
+			return new ObjectRepresentation<byte[]>(mediatorOutput);
 		}
 		MediatorGenerator mediator = new MediatorGenerator();
 		MediatorOutput mediatorOutput = mediator.generateWar(byteArray, busProtocol, service_name);
