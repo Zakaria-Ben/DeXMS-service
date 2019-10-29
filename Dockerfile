@@ -74,7 +74,7 @@ RUN sed -i 's/52428800/152428800/g' /usr/local/apache-tomcat-8.5.42/webapps/mana
 RUN /usr/local/apache-tomcat-8.5.42/bin/startup.sh
 
 # clone DexMS code
-RUN git clone https://gitlab.inria.fr/zefxis/DeXMS-Service.git
+RUN git clone https://gitlab.inria.fr/zefxis/DeXMS-Service.git #
 
 # clean and install DeXMS
 WORKDIR /app/DeXMS-Service
@@ -82,7 +82,7 @@ RUN git pull
 RUN source /etc/environment && mvn clean verify
 RUN source /etc/environment && mvn install
 # deploy war
-RUN cp target/DeXMS-Service-1.0.0-SNAPSHOT.war /usr/local/apache-tomcat-8.5.42/webapps/
+RUN cp target/dexms-service-1.0.0-SNAPSHOT.war /usr/local/apache-tomcat-8.5.42/webapps/
  
 
 # expose port for tomcat
