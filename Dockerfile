@@ -81,9 +81,11 @@ WORKDIR /app/DeXMS-Service
 RUN git pull
 RUN source /etc/environment && mvn clean verify
 RUN source /etc/environment && mvn install
-# deploy war
+
+# deploy generated war in the tomcat webapp forlder
+# TODO: here the dexms service version number should be removed from the war filename
+# so that it does not break API call in other scripts when we update the service
 RUN cp target/dexms-service-1.0.0-SNAPSHOT.war /usr/local/apache-tomcat-8.5.42/webapps/
- 
 
 # expose port for tomcat
 EXPOSE 8080
@@ -94,6 +96,11 @@ WORKDIR /app
 COPY launch_tomcat_bg.sh .
 RUN chmod u+x launch_tomcat_bg.sh
 
+# TODO
 # initial command, but it returns so the container exits/stops
-CMD ./launch_tomcat_bg.sh
-
+# so launch a bash afterwards to avoid the container exiting
+# this is however not the proper way of using containers. Tomcat should be launched
+# in foreground instead, and if the container dies (meaning tomcat died), then it
+# can be restarted by another tool (kubernetes for example). this is the proper way
+# of doing microservices
+CMD bash -C './launch_tomcat_bg.sh';'bash'
