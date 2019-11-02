@@ -38,28 +38,3 @@ Then in the container, check the log files with
 
 ``tail -f /usr/local/apache-tomcat-8.5.42/logs/catalina.out``
 
-
-```
-python3 mediator_service_request.py http://localhost:8080/dexms-service-1.0.0-SNAPSHOT/dexms/mediator \
-    laxparking.gidl \
-    mqtt \
-    laxparking \
-    generated_mediator.jar
-```
-
-The jar file can then be tested directly with the command
-
-```java -jar generated_mediator.jar```
-
-## DeXMS service API
-
-In order to generate and test the mediator inside a Dockerfile, first go into the scripts folder, and then call 
-the following command:
-
-```sh mediator_dockerfile_generation.sh laxparking.gidl laxparking 1.0 443,80,8080```
-
-Once the Dockerfile is generated, the Docker image is then automatically created. Once
-the image generation is completed, 
-
-```docker run -p 443:443 mediator_laxparking:1.0```
-
