@@ -36,16 +36,29 @@ public class DexmsMediatorResource extends ServerResource {
 		System.out.println("received : " + receivedText);
 		JSONParser parser = new JSONParser();
 		JSONObject jsonObject = null;
+		
+		String service_endpoint_address = null; 
+		String service_endpoint_port = null;
+		String bus_endpoint_address = null;
+		String bus_endpoint_port = null;
 		String protocol = null;
 		String interfaceService = null;
-		String service_name = null;
+		String mediator_name = null;
+		
+		
 
 		try {
 
 			jsonObject = (JSONObject) parser.parse(receivedText);
+			
+			service_endpoint_address = (String) jsonObject.get("service_endpoint_address");
+			service_endpoint_port = (String) jsonObject.get("service_endpoint_port");
+			bus_endpoint_address = (String) jsonObject.get("bus_endpoint_address");
+			bus_endpoint_port = (String) jsonObject.get("bus_endpoint_port");
 			protocol = (String) jsonObject.get("protocol");
 			interfaceService = (String) jsonObject.get("gidl");
-			service_name = (String) jsonObject.get("service_name");
+			mediator_name = (String) jsonObject.get("mediator_name");
+			
 
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -86,19 +99,24 @@ public class DexmsMediatorResource extends ServerResource {
 
 			busProtocol = ProtocolType.DPWS;
 			break;
+		
+		
 		default:
 
 			busProtocol = null;
 			break;
 		}
 
-		if (busProtocol == null) {
+		if(busProtocol == null) {
 
 			byte[] mediatorOutput = null;
 			return new ObjectRepresentation<byte[]>(mediatorOutput);
 		}
+		
 		MediatorGenerator mediator = new MediatorGenerator();
-		MediatorOutput mediatorOutput = mediator.generateWar(byteArray, busProtocol, service_name);
+		mediator.setServiceEndpoint(service_endpoint_address, service_endpoint_port);
+		mediator.setBusEndpoint(bus_endpoint_address, bus_endpoint_port);
+		MediatorOutput mediatorOutput = mediator.generateWar(byteArray, busProtocol, mediator_name);
 		return new ObjectRepresentation<byte[]>(mediatorOutput.jar);
 	}
 
