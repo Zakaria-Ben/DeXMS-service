@@ -29,6 +29,8 @@ By default, this will start the ``launch_tomcat_bg.sh`` script that launches Tom
 In order to check that Tomcat is running, in a browser, open the url http://localhost:8080. Tomcat should respond. It 
 is then possible to navigate to the Tomcat's manager application to check that the DeXMS service is running properly.
 
+## Monitoring Tomcat
+
 If debugging Tomcat is required, in another terminal, enter the container in interactive mode. First get the container 
 ID for the DeXMS service container with ``docker ps``. Then:
 
