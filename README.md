@@ -19,7 +19,7 @@ Then build the image with (change the image name and version number accordingly)
 
 ``docker build -t="dexms_service:1.0" .``
 
-In order to start the container
+In order to start the container (assumes Tomcat is using port 8080)
 
 ``docker run -p 8080:8080 dexms_service:1.0``
 
