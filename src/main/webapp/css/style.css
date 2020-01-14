@@ -1,0 +1,124 @@
+body {
+	background-color: #e7e7e7;
+	font-family: Helvetica;
+	font-size: 14px;
+	color: #666;
+	margin: 0px;
+	padding: 0px;
+}
+
+.wrapper {
+	width: 100%;
+	margin: 0 auto;
+	background: white;
+	margin: 0 auto;
+}
+
+.container {
+	min-height: 400px;
+	border-top: 1px solid gray;
+	padding: 50px;
+}
+
+.dialog {
+	width: 115px;
+	float: left;
+	margin: 5px 5px 5px 5px;
+}
+
+.dialog .text {
+	text-align: justify;
+	font-size: 0.8em;
+}
+
+.dialog .protocol {
+	text-align: justify;
+	font-size: 0.5em;
+	font-style: italic;
+}
+
+.dialog .binding-component {
+	text-align: center;
+	font-size: 0.5em;
+	font-style: italic;
+	color: green;
+}
+
+#draggable0 {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#endpoints {
+	vertical-align: top;
+	padding: 0px 0px 5px 0px;
+	width: 100%;
+}
+
+#endpoints label {
+	display: block;
+	margin: 5px 0 0 0;
+}
+
+#endpoints-connected {
+	vertical-align: top;
+	padding: 0px 0px 0px 0px;
+	height: 60%;
+	width: 100%;
+}
+
+#endpoints-connected p {
+	width: 90%;
+}
+
+#endpoint-endpoint-monitor {
+	width: 49%;
+	float: left;
+}
+
+#use_case_tbody td {
+	border: 1px solid #2779aa;
+	font-weight: bold;
+	color: #2779aa;
+}
+
+#use_case_tbody tr {
+	background: #ffffff url("images/ui-bg_glass_100_e4f1fb_1x400.png") 50%
+		50% repeat-x;
+}
+
+#use_case_tbody tr:nth-child(even) {
+	background: #e4f1fb url("images/ui-bg_glass_100_e4f1fb_1x400.png") 50%
+		50% repeat-x;
+}
+
+.td_service_name_monitoring {
+	background: #e4f1fb url("images/ui-bg_glass_100_e4f1fb_1x400.png") 50%
+		50% repeat-x;
+	font-weight: bold;
+	color: #2779aa;
+}
+
+#monitoring_tbody td {
+	border: 1px solid #2779aa;
+}
+
+#endpoint-endpoint-show-panel {
+	width: 49%;
+	float: left;
+}
+
+#monitoring-selection {
+	width: 40%;
+	float: left;
+	height: auto;
+}
+
+#monitoring-process {
+	width: 60%;
+	float: left;
+	height: auto;
+}
