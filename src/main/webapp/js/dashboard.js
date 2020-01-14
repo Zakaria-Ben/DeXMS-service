@@ -14,42 +14,6 @@
     	var $form = $("#form-add-things")[0];
     	var $data = new FormData($form);
         switch($gidl_file_choice){
-       		case 'load-gidl-file' :
-       			
-       			$.ajax({
-           		 
-                    type: "POST",
-                    enctype: 'multipart/form-data',
-                    url: "ThingsController",
-                    data: $data,
-                    processData: false,
-                    contentType: false,
-                    cache: false,
-                    timeout: 600000,
-                    success: function (response){
-                   	 	
-                   	 var json = JSON.parse(JSON.stringify(response));
-                   	 if(json.status){
-                   		 
-                   		 addThingsucces(json.message,"result-thing");
-                   	 }
-                   	 else{
-                   		 
-                   		 addThingerror(json.message,"result-thing");
-                   	 }
-                        $("#register").prop("disabled", false);
-                       
-
-                    },
-                    error: function (e) {
-                   	 
-                   	 addThingerror(e.responseText,"result-thing");
-                        $("#register").prop("disabled", false);
-
-                    }
-                });
-       			
-       			break;
        			
        		case 'generate-gidl-file' :
        			
@@ -128,7 +92,7 @@
        			$.ajax({
        				
        				async: true,
-       				url: 'ThingsControllerWithGidlGenerator',
+       				url: 'ThingsControllerWithDeXIDLGenerator',
        	            dataType: 'json',
        	            data: {gidl:$service, name:$name,thingType:$thing_type,protocol:$protocol,host_address:$host_address,host_port:$host_port},
        	            type: 'post',
@@ -242,6 +206,7 @@
     	input_element_nbr++;
 		addComplexType("input","div-input-data-"+$idnumber,$idnumber,input_element_nbr);
 	}
+    
     
     function addComplexType($part_interaction,$idname,$operation_number, $idnumber){
     	
