@@ -1,4 +1,4 @@
-package org.zefxis.dexms.service;
+package org.zefxis.dexms.service.resources;
 
 import java.io.IOException;
 import org.json.simple.JSONObject;

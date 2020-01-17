@@ -1,8 +1,6 @@
 /**
  * 
  */
-
-	
 	var operation_number = 0;
 	var input_element_nbr = 0;
 	var ouput_element_nbr = 0;
@@ -92,7 +90,7 @@
        			$.ajax({
        				
        				async: true,
-       				url: 'ThingsControllerWithDeXIDLGenerator',
+       				url: 'DeXIDLGenerator',
        	            dataType: 'json',
        	            data: {gidl:$service, name:$name,thingType:$thing_type,protocol:$protocol,host_address:$host_address,host_port:$host_port},
        	            type: 'post',

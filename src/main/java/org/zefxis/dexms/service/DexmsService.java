@@ -3,6 +3,8 @@ package org.zefxis.dexms.service;
 import org.restlet.Application;
 import org.restlet.Restlet;
 import org.restlet.routing.Router;
+import org.zefxis.dexms.service.resources.DexmsMediatorResource;
+import org.zefxis.dexms.service.resources.DexmsStatusResource;
 
 public class DexmsService extends Application {
 

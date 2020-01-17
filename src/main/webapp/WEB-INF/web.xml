@@ -24,6 +24,10 @@ limitations under the License.
 		<servlet-name>RestletServlet</servlet-name>
 		<servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
 	</servlet>
+	<servlet>
+        <servlet-name>DeXIDLGenerator</servlet-name>
+        <servlet-class>org.zefxis.dexms.service.DeXIDLGeneratorService</servlet-class>
+   </servlet>
 	<servlet-mapping>
 		<servlet-name>RestletServlet</servlet-name>
 		<url-pattern>/dexms/*</url-pattern>
