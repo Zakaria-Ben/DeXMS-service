@@ -29,14 +29,13 @@ import org.zefxis.dexms.persistence.ServicePersistence;
 import org.zefxis.dexms.utils.ThingType;
 import org.zefxis.dexms.utils.Utils;
 
-
-public class DeXIDLGeneratorService extends HttpServlet {
+public class DeXIDLGeneratorServlet extends HttpServlet {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final String UPLOAD_DIRECTORY =  Utils.getUPLOAD_DIRECTORY();
+	private static final String UPLOAD_DIRECTORY = Utils.getUPLOAD_DIRECTORY();
 	private String dexidlPath = null;
 	private HttpSession session = null;
 	private JSONObject json = new JSONObject();
@@ -55,41 +54,46 @@ public class DeXIDLGeneratorService extends HttpServlet {
 
 		session = request.getSession();
 		response.setContentType("application/json");
-		
+
 		name = request.getParameter("name").toString();
-		json.put("name", name);		
+		json.put("name", name);
 		protocol = ProtocolType.valueOf(request.getParameter("protocol").toString());
 		thingType = ThingType.valueOf(request.getParameter("thingType").toString());
 		dexidl = request.getParameter("gidl").toString();
 		host_address = request.getParameter("host_address").toString();
 		host_port = request.getParameter("host_port").toString();
-		
 		dexidlPath = String.valueOf(System.currentTimeMillis()) + ".gidl";
-		
-		 
-		if (host_address == "" || dexidl == "" || dexidlPath == "" || name == "" || dexidlPath == "" || host_address == null || dexidl == null || dexidlPath == null || name == null  || thingType == null || protocol == null) {
+
+		System.out.println("dexidl: " + dexidl.toString());
+
+		if (host_address == "" || dexidl == "" || dexidlPath == "" || name == "" || dexidlPath == ""
+				|| host_address == null || dexidl == null || dexidlPath == null || name == null || thingType == null
+				|| protocol == null) {
 
 			status = false;
 			json.put("message", "Invalid informations for new thing. Please try again.");
 
-		}else {
+		} else {
 
 			switch (thingType) {
 
 			case SERVICE:
 
-				Service service = new Service(name, dexidlPath,host_address, protocol,host_port, thingType);
+				Service service = new Service(name, dexidlPath, host_address, protocol, host_port, thingType);
+
 				ServicePersistence servicePersistence = new ServicePersistence();
 				servicePersistence.registerThing(service);
 				generateGidlFile(dexidl, service.getId());
-				
+
 				break;
 
 			case DEVICE:
 
-				Device device = new Device(name, dexidlPath, host_address, protocol,host_port, thingType);
+				Device device = new Device(name, dexidlPath, host_address, protocol, host_port, thingType);
+
 				DevicePersistence devicePersistence = new DevicePersistence();
 				devicePersistence.registerThing(device);
+
 				generateGidlFile(dexidl, device.getId());
 
 				break;
@@ -121,7 +125,7 @@ public class DeXIDLGeneratorService extends HttpServlet {
 	}
 
 	private void generateGidlFile(String gidl_description, String thingId) {
-		
+
 		boolean isOneWay = false;
 		String service[] = gidl_description.split("\\|");
 		String operation_scope[] = service[0].split("\\:");
@@ -148,33 +152,33 @@ public class DeXIDLGeneratorService extends HttpServlet {
 		attr = gidl_model.createAttribute("xmi:version");
 		attr.setValue("2.0");
 		GIDLModel.setAttributeNode(attr);
-		
+
 		attr = gidl_model.createAttribute("xmlns:xmi");
 		attr.setValue("http://www.omg.org/XMI");
 		GIDLModel.setAttributeNode(attr);
-		
+
 		attr = gidl_model.createAttribute("xmlns:xsi");
 		attr.setValue("http://www.w3.org/2001/XMLSchema-instance");
 		GIDLModel.setAttributeNode(attr);
-		
+
 		attr = gidl_model.createAttribute("xmlns:gidl");
 		attr.setValue("http://eu.chorevolution/modelingnotations/gidl");
 		GIDLModel.setAttributeNode(attr);
-		
+
 		attr = gidl_model.createAttribute("hostAddress");
 		attr.setValue(host_address);
 		GIDLModel.setAttributeNode(attr);
 
 		attr = gidl_model.createAttribute("protocol");
-		if(String.valueOf(protocol).equals("COAP")){
-			
+		if (String.valueOf(protocol).equals("COAP")) {
+
 			attr.setValue("CoAP");
-			
-		}else{
-			
+
+		} else {
+
 			attr.setValue(String.valueOf(protocol));
 		}
-		
+
 		GIDLModel.setAttributeNode(attr);
 
 		// hasInterfaces element
@@ -228,21 +232,23 @@ public class DeXIDLGeneratorService extends HttpServlet {
 		Transformer transformer;
 		try {
 
-			if(new File(UPLOAD_DIRECTORY + File.separator + thingId).mkdirs()) {
+			System.out.println(UPLOAD_DIRECTORY + File.separator + thingId);
+			if (new File(UPLOAD_DIRECTORY + File.separator + thingId).mkdirs()) {
 
 				transformer = transformerFactory.newTransformer();
 				DOMSource source = new DOMSource(gidl_model);
 				StreamResult result = new StreamResult(
 						new File(UPLOAD_DIRECTORY + File.separator + thingId + File.separator + dexidlPath));
 				transformer.transform(source, result);
+
 			} else {
 
 				status = false;
 				json.put("message", "Can not save file on disk");
-
 			}
 
 		} catch (TransformerException e) {
+
 			status = false;
 			json.put("message", e);
 
@@ -347,7 +353,7 @@ public class DeXIDLGeneratorService extends HttpServlet {
 			attr = gidl_model.createAttribute("maxOccurs");
 			attr.setValue(String.valueOf(outputdata[3]));
 			hasDataType.setAttributeNode(attr);
-			if(outputdata[0].equals("simple")){
+			if (outputdata[0].equals("simple")) {
 
 				attr = gidl_model.createAttribute("xsi:type");
 				attr.setValue(String.valueOf("gidl:SimpleType"));
