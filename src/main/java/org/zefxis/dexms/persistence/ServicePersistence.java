@@ -17,6 +17,8 @@ import com.mongodb.DBObject;
 import fr.inria.mimove.monitor.persistence.MongoDB;
 
 
+
+
 public class ServicePersistence implements ThingPersistence {
 
 	@Override
