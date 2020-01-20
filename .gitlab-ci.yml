@@ -28,7 +28,7 @@ job_build_ci:
     - source /etc/environment && mvn install
   artifacts:
     paths:
-    - dexms-service/target/
+    - service/target/
 
 job_docker_ci:
   stage: test
@@ -45,11 +45,11 @@ job_test_ci:
     - source /etc/environment && mvn test
     - /usr/local/apache-tomcat-8.5.42/bin/startup.sh
     - sleep 10
-    - cp target/DeXMS-Service-1.1.0-SNAPSHOT.war /usr/local/apache-tomcat-8.5.42/webapps/
+    - cp target/dexms-service-1.1.0-SNAPSHOT.war /usr/local/apache-tomcat-8.5.42/webapps/
     - sleep 10
     - ls /usr/local/apache-tomcat-8.5.42/webapps
     - ls /usr/local/apache-tomcat-8.5.42/webapps/dexms-service-1.1.0-SNAPSHOT/
-    - wget http://localhost:8080/DeXMS-Service-1.1.0-SNAPSHOT/
+    - wget http://localhost:8080/dexms-service-1.1.0-SNAPSHOT/
   artifacts:
     paths:
     - dexms-service/target/
