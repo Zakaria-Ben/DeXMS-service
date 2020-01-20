@@ -9,12 +9,10 @@ import org.zefxis.dexms.model.Service;
 import org.zefxis.dexms.utils.Thing;
 import org.zefxis.dexms.utils.ThingPersistence;
 import org.zefxis.dexms.utils.ThingType;
-
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
-
-import fr.inria.mimove.monitor.persistence.MongoDB;
+import org.zefxis.dexms.singleton.MongoDB;
 
 
 

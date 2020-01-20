@@ -5,15 +5,12 @@ import java.util.List;
 import org.bson.types.ObjectId;
 import org.zefxis.dexms.gmdl.utils.enums.ProtocolType;
 import org.zefxis.dexms.model.Device;
+import org.zefxis.dexms.singleton.MongoDB;
 import org.zefxis.dexms.utils.Thing;
 import org.zefxis.dexms.utils.ThingPersistence;
 import org.zefxis.dexms.utils.ThingType;
-
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
-
-import fr.inria.mimove.monitor.persistence.MongoDB;
-
 
 
 public class DevicePersistence implements ThingPersistence {
