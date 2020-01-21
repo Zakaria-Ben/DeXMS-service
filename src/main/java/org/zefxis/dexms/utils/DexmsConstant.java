@@ -7,4 +7,5 @@ public class DexmsConstant {
 	public static final String MongoDbUser = "dexms-service";
 	public static final String MongoDbPWD = "dexms";
 	public static final String MongoDbName = "dexms";
+
 }
