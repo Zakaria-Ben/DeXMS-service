@@ -25,12 +25,15 @@ public class MongoDB{
 			MongoClient mongoClient;
 			try {
 				
-				mongoClient = new MongoClient(DexmsConstant.Database,27017);
-				mongoDB = mongoClient.getDB("dexms");
-				mongoCollection = mongoDB.getCollection(collection);
+				mongoClient = new MongoClient(DexmsConstant.MongoDbHost,DexmsConstant.MongoDbPort);
+				mongoDB = mongoClient.getDB(DexmsConstant.MongoDbName);
+				boolean auth = mongoDB.authenticate(DexmsConstant.MongoDbUser, DexmsConstant.MongoDbPWD.toCharArray());
+				if(auth) {
+					
+					mongoCollection = mongoDB.getCollection(collection);
+				}
+			} catch(UnknownHostException e){
 				
-			} catch (UnknownHostException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
