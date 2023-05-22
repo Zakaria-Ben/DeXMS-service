@@ -32,6 +32,7 @@ RUN update-alternatives --config java | head -n 1 | sed -n -e 's/^.*: //p'  >> /
 
 # install maven
 RUN apt-get install -y maven
+RUN -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity.dates=true
 #RUN wget http://apache.mirrors.benatherton.com/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.tar.gz
 #RUN gunzip apache-maven-3.6.1-bin.tar.gz
 #RUN tar xvf apache-maven-3.6.1-bin.tar

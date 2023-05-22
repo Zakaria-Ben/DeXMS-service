@@ -15,6 +15,11 @@
 		<DeXMS.version>1.0.0-SNAPSHOT</DeXMS.version>
 	</properties>
 	<repositories>
+                <repository>
+                        <id>maven-restlet</id>
+                        <name>Public online Restlet repository</name>
+                        <url>https://maven.restlet.talend.com</url>
+                </repository>
 		<repository>
 			<id>spring-milestones</id>
 			<url>http://repo.spring.io/libs-milestone/</url>
@@ -142,19 +147,12 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.restlet.jee/org.restlet -->
 <!-- https://mvnrepository.com/artifact/org.restlet.jee/org.restlet.ext.servlet -->
                 <dependency>
                         <groupId>org.restlet.jee</groupId>
                         <artifactId>org.restlet.ext.servlet</artifactId>
                         <version>2.4.0</version>
                 </dependency>
-                <!-- <dependency>
-			<groupId>org.restlet.jee</groupId>
-			<artifactId>org.restlet.ext.servlet</artifactId>
-			<version>2.3.1</version>
-		</dependency>
-		-->
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
