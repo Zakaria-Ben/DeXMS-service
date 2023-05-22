@@ -4,7 +4,7 @@
 # To build: docker build -t="dexms:1.0" .
 # to start: docker run -d dexms:1.0
 
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 SHELL ["/bin/bash", "-c"]
 
@@ -32,7 +32,7 @@ RUN update-alternatives --config java | head -n 1 | sed -n -e 's/^.*: //p'  >> /
 
 # install maven
 RUN apt-get install -y maven
-RUN -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity.dates=true
+#RUN -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity.dates=true
 #RUN wget http://apache.mirrors.benatherton.com/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.tar.gz
 #RUN gunzip apache-maven-3.6.1-bin.tar.gz
 #RUN tar xvf apache-maven-3.6.1-bin.tar
@@ -89,7 +89,9 @@ RUN source /etc/environment && mvn install
 # deploy generated war in the tomcat webapp forlder
 # TODO: here the dexms service version number should be removed from the war filename
 # so that it does not break API call in other scripts when we update the service
-RUN cp target/dexms-service-1.0.0-SNAPSHOT.war /usr/local/apache-tomcat-8.5.42/webapps/
+
+
+RUN cp target/dexms-service-1.2.0-SNAPSHOT.war /usr/local/apache-tomcat-8.5.42/webapps/
 
 # expose port for tomcat
 EXPOSE 8080
