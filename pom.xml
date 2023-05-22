@@ -143,12 +143,12 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.restlet.jee/org.restlet -->
+<!-- https://mvnrepository.com/artifact/org.restlet.jee/org.restlet.ext.servlet -->
                 <dependency>
                         <groupId>org.restlet.jee</groupId>
-                        <artifactId>org.restlet</artifactId>
+                        <artifactId>org.restlet.ext.servlet</artifactId>
                         <version>2.4.0</version>
                 </dependency>
-
                 <!-- <dependency>
 			<groupId>org.restlet.jee</groupId>
 			<artifactId>org.restlet.ext.servlet</artifactId>

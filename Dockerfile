@@ -75,11 +75,13 @@ RUN sed -i 's/52428800/152428800/g' /usr/local/apache-tomcat-8.5.42/webapps/mana
 RUN /usr/local/apache-tomcat-8.5.42/bin/startup.sh
 
 # clone DexMS code
-RUN git clone https://gitlab.inria.fr/zefxis/DeXMS-Service.git #
+#RUN git clone https://gitlab.inria.fr/zefxis/DeXMS-Service.git #
+RUN git config --global http.sslVerify false
+RUN git clone https://github.com/Zakaria-Ben/DeXMS-service.git
 
 # clean and install DeXMS
-WORKDIR /app/DeXMS-Service
-RUN git pull
+WORKDIR /app/DeXMS-service
+#RUN git pull
 RUN source /etc/environment && mvn clean verify
 RUN source /etc/environment && mvn install
 
