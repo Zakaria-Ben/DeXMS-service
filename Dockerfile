@@ -31,11 +31,12 @@ RUN update-alternatives --config java | head -n 1 | sed -n -e 's/^.*: //p'  >> /
 
 
 # install maven
-RUN wget http://apache.mirrors.benatherton.com/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.tar.gz
-RUN gunzip apache-maven-3.6.1-bin.tar.gz
-RUN tar xvf apache-maven-3.6.1-bin.tar
-RUN cp -rf apache-maven-3.6.1 /usr/local/
-RUN rm -rf apache-maven-3.6.1-bin.tar apache-maven-3.6.1
+RUN apt-get install -y maven
+#RUN wget http://apache.mirrors.benatherton.com/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.tar.gz
+#RUN gunzip apache-maven-3.6.1-bin.tar.gz
+#RUN tar xvf apache-maven-3.6.1-bin.tar
+#RUN cp -rf apache-maven-3.6.1 /usr/local/
+#RUN rm -rf apache-maven-3.6.1-bin.tar apache-maven-3.6.1
 # add maven bin to path
 RUN echo "PATH=\"/usr/local/apache-maven-3.6.1/bin:$PATH\"" >>  /etc/environment
 # change MAVEN_OPTS to support compilation on docker, avoid GC exception
