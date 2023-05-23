@@ -24,7 +24,8 @@ RUN apt-get update && \
 
 
 # install java
-RUN apt-get install -y default-jdk
+#RUN apt-get install -y default-jdk
+RUN apt-get install -y openjdk-8-jdk
 # set jdk path (use 2 lines, -n to avoid CRLF
 RUN echo -n "JAVA_HOME=" >> /etc/environment
 RUN update-alternatives --config java | head -n 1 | sed -n -e 's/^.*: //p'  >> /etc/environment
