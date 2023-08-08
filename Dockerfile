@@ -79,12 +79,17 @@ RUN /usr/local/apache-tomcat-8.5.42/bin/startup.sh
 # clone DexMS code
 #RUN git clone https://gitlab.inria.fr/zefxis/DeXMS-Service.git #
 RUN git config --global http.sslVerify false
-RUN git clone https://github.com/Zakaria-Ben/DeXMS-service.git
+RUN git clone https://github.com/Zakaria-Ben/DeXMS-CP4SC.git
+#RUN git clone https://github.com/Zakaria-Ben/DeXMS-service.git
 
 # clean and install DeXMS
-WORKDIR /app/DeXMS-service
+WORKDIR /app/DeXMS-CP4SC
+RUN source /etc/environment && mvn install && mvn package
+
+RUN git clone https://github.com/Zakaria-Ben/DeXMS-service.git
+WORKDIR ./DeXMS-service
 #RUN git pull
-RUN source /etc/environment && mvn clean verify
+#RUN source /etc/environment && mvn clean
 RUN source /etc/environment && mvn install
 
 # deploy generated war in the tomcat webapp forlder
