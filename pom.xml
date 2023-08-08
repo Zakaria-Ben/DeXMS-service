@@ -10,6 +10,7 @@
 	<name>DeXMS Service Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
+<restlet-version>2.3.1</restlet-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<contextpath>dexms-service</contextpath>
 		<DeXMS.version>1.0.0-SNAPSHOT</DeXMS.version>
@@ -17,18 +18,18 @@
 	<repositories>
                 <repository>
                         <id>maven-restlet</id>
-                        <name>Public online Restlet repository</name>
+                        <name>Restlet repository</name>
                         <url>https://maven.restlet.talend.com</url>
                 </repository>
 		<repository>
 			<id>spring-milestones</id>
 			<url>http://repo.spring.io/libs-milestone/</url>
 		</repository>
-		<repository>
+<!--		<repository>
 			<id>snapshots</id>
 			<name>http://maven.inria.fr-snapshots</name>
 			<url>http://maven.inria.fr/artifactory/zefxis-public-snapshot</url>
-		</repository>
+		</repository> -->
 	</repositories>
 	<build>
 		<plugins>
@@ -89,16 +90,36 @@
 	</build>
 	<dependencies>
 		<!-- DeXMS artifacts -->
-		<dependency>
+<!--		<dependency>
 			<groupId>org.zefxis.dexms</groupId>
 			<artifactId>mediator-generator</artifactId>
 			<version>${DeXMS.version}</version>
-		</dependency>
-		<dependency>
+		</dependency> -->
+  <dependency>
+    <groupId>org.restlet.jse</groupId>
+    <artifactId>org.restlet</artifactId>
+    <version>${restlet-version}</version>
+  </dependency>
+  <dependency>
+    <groupId>org.restlet.jse</groupId>
+    <artifactId>org.restlet.ext.jackson</artifactId>
+    <version>${restlet-version}</version>
+  </dependency>
+<dependency>
+        <groupId>org.zefxis.dexms</groupId>
+        <artifactId>mediator-generator</artifactId>
+        <version>${DeXMS.version}</version> <!-- Replace with the appropriate version tag -->
+    </dependency>
+<dependency>
+        <groupId>org.zefxis.dexms</groupId>
+        <artifactId>gmdl-utils</artifactId>
+        <version>${DeXMS.version}</version> <!-- Replace with the appropriate version tag -->
+    </dependency>
+<!--		<dependency>
 			<groupId>org.zefxis.dexms</groupId>
 			<artifactId>gmdl-utils</artifactId>
 			<version>${DeXMS.version}</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- Manage file upload -->
 		<dependency>
@@ -123,22 +144,13 @@
 			<artifactId>jquery</artifactId>
 			<version>2.1.4</version>
 		</dependency>
-                <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-                <dependency>
-                        <groupId>javax.servlet</groupId>
-                        <artifactId>javax.servlet-api</artifactId>
-                        <version>4.0.1</version>
-                        <scope>provided</scope>
-                </dependency>
 
-		
-                <!--
-                <dependency>
+		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
 		</dependency>
-                -->
+
 		<!-- Unit test -->
 
 		<dependency>
@@ -147,12 +159,12 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-<!-- https://mvnrepository.com/artifact/org.restlet.jee/org.restlet.ext.servlet -->
-                <dependency>
-                        <groupId>org.restlet.jee</groupId>
-                        <artifactId>org.restlet.ext.servlet</artifactId>
-                        <version>2.4.0</version>
-                </dependency>
+		<dependency>
+			<groupId>org.restlet.jee</groupId>
+			<artifactId>org.restlet.ext.servlet</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
